@@ -110,7 +110,7 @@ def text_to_sign_language(text):
     # return sign_language_images
 
 # Function to generate audio from text
-def generate_audio(text, output_file_path='output_audio.mp3'):
+def generate_audio(text):
     synthesis_input = texttospeech.SynthesisInput(text=text)
     print(f"Synthesis input: {synthesis_input}")
     voice = texttospeech.VoiceSelectionParams(
@@ -118,6 +118,7 @@ def generate_audio(text, output_file_path='output_audio.mp3'):
         name="en-US-Wavenet-D",  # Update with your desired voice model
         ssml_gender=texttospeech.SsmlVoiceGender.NEUTRAL
     )
+    output_file_path = os.path.dirname(__file__) + '/../output_audio.mp3'
 
     audio_config = texttospeech.AudioConfig(
         audio_encoding=texttospeech.AudioEncoding.LINEAR16
