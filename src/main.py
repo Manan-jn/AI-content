@@ -191,6 +191,7 @@ if generate_video:
           max_tokens=max_tokens
       )
       generated_text = resp.choices[0].message.content
+      audio_path = generate_audio(generated_text)
 
       # DEBUG
       # st.write(generated_text)
@@ -205,9 +206,6 @@ if generate_video:
   # st.write(audio_path)
       
   try:
-      audio_path = generate_audio(generated_text)
-      st.write(audio_path)
-      
       video_file_path = os.path.dirname(__file__) + '/../GenScene.mp4'
       audio_file_path = os.path.dirname(__file__) + '/../output_audio.mp3'
 
