@@ -211,16 +211,16 @@ if generate_video:
       video_file_path = os.path.dirname(__file__) + '/../GenScene.mp4'
       audio_file_path = os.path.dirname(__file__) + '/../output_audio.mp3'
 
-      # video_clip = VideoFileClip(video_file_path)
-      # audio_clip = AudioFileClip(audio_file_path)
+      video_clip = VideoFileClip(video_file_path)
+      audio_clip = AudioFileClip(audio_file_path)
       # audio_file = open(audio_path, 'rb')
       # # DEBUG
       # st.audio(audio_file.read(), format='audio/wav')
 
-      # video_clip = video_clip.set_audio(audio_clip)
+      video_clip = video_clip.set_audio(audio_clip)
       merged_video_path = os.path.dirname(__file__) + '/../MergedVideo.mp4'
-      merge_video_audio_ffmpeg(video_file_path, audio_file_path, merged_video_path)
-      # video_clip.write_videofile(merged_video_path, codec='libx264', audio_codec='aac')
+      # merge_video_audio_ffmpeg(video_file_path, audio_file_path, merged_video_path)
+      video_clip.write_videofile(merged_video_path, codec='libx264', audio_codec='aac')
 
       # Display the merged video
       st.video(merged_video_path)
