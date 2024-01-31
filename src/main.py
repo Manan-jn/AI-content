@@ -14,7 +14,7 @@ from utils import *
 # icon = Image.open(os.path.dirname(__file__) + '/icon.png')
 
 st.set_page_config(
-    page_title="Generative Manim Content",
+    page_title="",
     # page_icon=icon,
 )
 
@@ -23,12 +23,11 @@ styl = f"""
   textarea[aria-label="Code generated: "] {{
     font-family: 'Consolas', monospace !important;
   }}
-  }}
 </style>
 """
 st.markdown(styl, unsafe_allow_html=True)
 
-st.title("Generative Manim")
+st.title("")
 
 prompt = st.text_area("Write what do you want to learn. Use simple words",
                       "Pythagoras Theorem", max_chars=100,
@@ -44,7 +43,7 @@ if st.checkbox("Use own Open API Key (recommended)"):
   openai_api_key = st.text_input(
       "Paste your own [Open API Key](https://platform.openai.com/account/api-keys)", value="", type="password")
 
-st.write(":warning: Currently OpenAI accepts 25 requests every 3 hours for GPT-4. This means OpenAI will start rejecting some requests. There are two solutions: Use GPT-3.5-Turbo, or use your own OpenAI API key.")
+# st.write(":warning: Currently OpenAI accepts 25 requests every 3 hours for GPT-4. This means OpenAI will start rejecting some requests. There are two solutions: Use GPT-3.5-Turbo, or use your own OpenAI API key.")
 
 generate_video = st.button("Generate", type="primary")
 show_code = st.checkbox("Show generated code (that produces the video)")
@@ -217,8 +216,8 @@ if generate_video:
 
       video_clip = video_clip.set_audio(audio_clip)
       merged_video_path = os.path.dirname(__file__) + '/../MergedVideo.mp4'
-      # merge_video_audio_ffmpeg(video_file_path, audio_file_path, merged_video_path)
-      video_clip.write_videofile(merged_video_path, codec='libx264', audio_codec='aac')
+      merge_video_audio_ffmpeg(video_file_path, audio_file_path, merged_video_path)
+      # video_clip.write_videofile(merged_video_path, codec='libx264', audio_codec='aac')
 
       # Display the merged video
       st.video(merged_video_path)
